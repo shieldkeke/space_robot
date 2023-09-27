@@ -183,14 +183,14 @@ if __name__ == '__main__':
     dataAcc = []
     last_v = [0]*7
     first_flag = True
-    graphPos = sim.getObject('./DataPos')
-    graphVel = sim.getObject('./DataVel')
-    graphAcc = sim.getObject('./DataAcc')
-    color = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [0, 1, 1], [1, 1, 1]]
-    for i in range(7):
-        dataPos.append(sim.addGraphStream(graphPos, 'Joint'+str(i+1), 'deg', 0, color[i]))
-        dataVel.append(sim.addGraphStream(graphVel, 'Joint'+str(i+1), 'deg/s', 0, color[i]))
-        dataAcc.append(sim.addGraphStream(graphAcc, 'Joint'+str(i+1), 'deg/s2', 0, color[i]))
+    # graphPos = sim.getObject('./DataPos')
+    # graphVel = sim.getObject('./DataVel')
+    # graphAcc = sim.getObject('./DataAcc')
+    # color = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [0, 1, 1], [1, 1, 1]]
+    # for i in range(7):
+    #     dataPos.append(sim.addGraphStream(graphPos, 'Joint'+str(i+1), 'deg', 0, color[i]))
+    #     dataVel.append(sim.addGraphStream(graphVel, 'Joint'+str(i+1), 'deg/s', 0, color[i]))
+    #     dataAcc.append(sim.addGraphStream(graphAcc, 'Joint'+str(i+1), 'deg/s2', 0, color[i]))
 
     # run simulation
     while (t := sim.getSimulationTime()) < TOLTAL_TIME:
@@ -223,9 +223,9 @@ if __name__ == '__main__':
             vel = sim.getJointVelocity(robot[i])
             acc = (vel - last_v[i])/sim.getSimulationTimeStep()
             last_v[i] = vel
-            sim.setGraphStreamValue(graphPos,dataPos[i], pos*180/np.pi)
-            sim.setGraphStreamValue(graphVel,dataVel[i], vel*180/np.pi)
-            sim.setGraphStreamValue(graphAcc,dataAcc[i], acc*180/np.pi)
+            # sim.setGraphStreamValue(graphPos,dataPos[i], pos*180/np.pi)
+            # sim.setGraphStreamValue(graphVel,dataVel[i], vel*180/np.pi)
+            # sim.setGraphStreamValue(graphAcc,dataAcc[i], acc*180/np.pi)
 
         # triggers next simulation step
         client.step()  
